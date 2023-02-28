@@ -8,22 +8,20 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useContext, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "../auth-context/auth-context";
 
-import { drawerActions } from '../Redux/drawerSlice'
-import { obj } from "./icons";
-
-// useEffect(()={
-
-// })
+import { links, obj } from "./optionsData";
 
 const Options = (props) => {
-  const dispatch= useDispatch();
-  const drawerShow = useSelector(state => state.drawer.activeButton)
+  const location = useLocation();
+  const auth = useContext(AuthContext);
+  let key = Object.keys(links).find(k=>links[k]===location.pathname);
+  const [value, setValue] = useState(key);
 
   const dashHandler = (name) => {
-    dispatch(drawerActions.toggle(name));
+    setValue(name);
  }
 
   return (
@@ -46,11 +44,22 @@ const Options = (props) => {
             <ListItemButton
               sx={{
                 borderTopRightRadius: "60px",
-                borderBottomRightRadius: "60px"
+                borderBottomRightRadius: "60px",
+                '&.Mui-selected': {
+                  color: '#418afb',
+                }
               }}
-              onClick={() => dashHandler(text) }
+              selected={links[text] === location.pathname}
+              component={text !== 'Dark Mode' | 'Logout' ? Link : null} 
+              to={links[text]} 
+              onClick={() => {
+                dashHandler(text !== 'Dark Mode' | 'Logout' ? text : value)
+                if(text === 'Logout') {
+                  auth.logout()
+                }
+              }}
             >
-              <ListItemIcon>{obj[text]}</ListItemIcon>
+              <ListItemIcon sx={{color:'#9C9C9C'}}>{obj[text]}</ListItemIcon>
               <ListItemText
                 disableTypography
                 primary={
@@ -59,6 +68,7 @@ const Options = (props) => {
               />
               {text === "Dark Mode" ? (
                 <Switch
+                sx={{zIndex: 1}}
                   checked={props.checked}
                   onChange={props.change}
                 />
