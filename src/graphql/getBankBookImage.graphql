@@ -1,0 +1,5 @@
+mutation getBankBookImage($id: Int!) {
+  getBankBookImage(id: $id) {
+    response
+  }
+}

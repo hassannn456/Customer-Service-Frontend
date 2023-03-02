@@ -1,0 +1,5 @@
+mutation rejectBankBook($id: Int!) {
+  rejectBankBook(id: $id) {
+    response
+  }
+}
