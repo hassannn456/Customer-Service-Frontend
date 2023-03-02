@@ -1,0 +1,14 @@
+query getNewBankBooks {
+  getNewBankBooks {
+    account_name
+    account_number
+    active
+    book_image
+    created_at
+    customer_id
+    display_name
+    id
+    routing_number
+    updated_at
+  }
+}
