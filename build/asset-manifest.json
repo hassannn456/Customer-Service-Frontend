@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/customer-console/static/css/main.e6c13ad2.css",
+    "main.js": "/customer-console/static/js/main.b836e27d.js",
+    "static/media/appicon.svg": "/customer-console/static/media/appicon.f4faee318ca1446853d530616be06d33.svg",
+    "index.html": "/customer-console/index.html",
+    "main.e6c13ad2.css.map": "/customer-console/static/css/main.e6c13ad2.css.map",
+    "main.b836e27d.js.map": "/customer-console/static/js/main.b836e27d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.b836e27d.js"
+  ]
+}
