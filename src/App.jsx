@@ -25,6 +25,7 @@ function App() {
           },
           secondary: {
             main: darkMode? '#1f1f1f': '#ffffff',
+            text: darkMode? '#ffffff': '#1f1f1f',
           }
       }
   });
@@ -35,7 +36,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.REACT_APP_HOME_PAGE}>
     <AuthContext.Provider
       value={{
         isLoggedIn: !!token,
