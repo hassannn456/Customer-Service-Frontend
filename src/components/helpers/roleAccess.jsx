@@ -7,7 +7,7 @@ const Auth = ({ allowedRoles }) => {
   const auth = useContext(AuthContext);
   const location = useLocation();
 
-  return allowedRoles.find((role) => auth.userRole?.includes(role)) ? (
+  return allowedRoles.find((role) => auth.userRole?.toLowerCase().includes(role)) ? (
     <Outlet />
   ) : (
     <Navigate to={'/'} state={{ from: location }} replace/>
