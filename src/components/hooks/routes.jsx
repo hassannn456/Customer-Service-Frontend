@@ -1,13 +1,14 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "../pages/Login";
-import Support from "../pages/Support";
 import SignUp from "../pages/SignUp";
-import Tutorial from "../pages/Tutorial";
 import Auth from "../helpers/roleAccess";
 import BankAccounts from "../pages/BankAccounts";
 import AccountDetails from "../pages/AccountDetails";
 import TabNames, { links } from "../navigation/optionsData";
+import ManageAccounts from "../pages/ManageAccounts";
+import DummyPage from "../pages/DummyPage";
+import UsersData from "../pages/UsersData";
 
  const useRoutes = () => {
   const logged = localStorage.getItem('userData')
@@ -18,17 +19,24 @@ import TabNames, { links } from "../navigation/optionsData";
     <Routes>
       <Route path="/" element={<Navigate to={linkHome}/>} />
       <Route path="/tabs/login" element={<Login />} />
-      <Route path="/tabs/support" element={<Support />} />
-      <Route path="/tabs/tutorial" element={<Tutorial />} />
       <Route path="*" element={<Navigate to="/" />} />
+
+      <Route element={<Auth allowedRoles={["admin", "operations", "customer service"]} />}>
+      <Route path="/tabs/manageAccount" element={<ManageAccounts />} />
+      </Route>
 
       <Route element={<Auth allowedRoles={["admin"]} />}>
       <Route path="/tabs/signup" element={<SignUp />} />
+      <Route path="/tabs/usersData" element={<UsersData />} />
       </Route>
 
-      <Route element={<Auth allowedRoles={["Operations"]} />}>
+      <Route element={<Auth allowedRoles={["operations"]} />}>
       <Route path="/tabs/BankAccountApproval" element={<BankAccounts />} />
       <Route path="/tabs/BankAccountApproval/:id" element={<AccountDetails  />} />
+      </Route>
+
+      <Route element={<Auth allowedRoles={["customer service"]} />}>
+      <Route path="/tabs/dummyPage" element={<DummyPage />} />
       </Route>
     </Routes>
     )
