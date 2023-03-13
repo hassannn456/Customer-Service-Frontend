@@ -2,6 +2,7 @@ import { Input, InputLabel, MenuItem, Select, styled } from "@mui/material";
 
 export const StyledInput = styled(Input)(({ theme }) =>({
     paddingLeft:'20px', 
+    paddingRight:'6px', 
     paddingBottom:'2px',
     paddingTop:'2px',
     '&:before': {
@@ -9,6 +10,7 @@ export const StyledInput = styled(Input)(({ theme }) =>({
     },
     input:{
       WebkitBoxShadow: `0 0 0 1000px ${theme.palette.secondary.main} inset`,
+      WebkitTextFillColor: `${theme.palette.secondary.text}`
     },
     '&:focused': {
       borderBottom: '0.1px solid #386ec3',
