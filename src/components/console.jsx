@@ -50,8 +50,6 @@ export default function ResponsiveDrawer(props) {
         checked={props.checked}
         change={props.change}
       ></Options>
-      <Divider />
-      <Options options={tabName.options3} title={"TUTORIAL"}></Options>
     </Stack>
   );
 

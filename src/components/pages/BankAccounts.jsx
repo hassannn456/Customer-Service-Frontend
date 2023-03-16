@@ -48,7 +48,7 @@ const BankAccounts = () => {
     return (
       <StyledSearchResultBox mb={8}>
         <Stack mt={2}>
-          {loading ? "Loading..." : error ? error : "No results found."}
+          {loading ? "Loading..." : error ? error.message : "No results found."}
         </Stack>
       </StyledSearchResultBox>
     );

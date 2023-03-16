@@ -1,40 +1,43 @@
 import {
     Login,
     PersonAdd,
-    QuestionMark,
     DarkModeOutlined,
-    HardwareSharp,
     Flaky,
     Logout,
+    ManageAccounts,
+    FormatListBulleted,
   } from "@mui/icons-material";
 import { useContext } from "react";
 import { AuthContext } from "../auth-context/auth-context";
 
 export const obj = {
-    "Show Tutorial": <HardwareSharp />,
-    Support: <QuestionMark />,
     Login: <Login />,
     Logout : <Logout/>,
     "Create User": <PersonAdd />,
     "Dark Mode": <DarkModeOutlined />,
     'Bank Account Approval': <Flaky/>,
+    'Manage Account': <ManageAccounts/>,
+    'Users Data': <FormatListBulleted/>,
+    'Dummy Page': <FormatListBulleted/>
   };
 
   export const links = {
-    "Show Tutorial": '/tabs/tutorial',
-    Support: '/tabs/support',
     Login: '/tabs/login',
     "Create User": '/tabs/signup',
-    'Bank Account Approval': '/tabs/BankAccountApproval'
+    'Bank Account Approval': '/tabs/BankAccountApproval',
+    'Manage Account': '/tabs/manageAccount',
+    'Users Data': '/tabs/usersData',
+    'Dummy Page': '/tabs/dummyPage'
   };    
 
   export const navHome = (role) =>{ 
-    const linkHome = role === "admin"
+    const roles = role?.toLowerCase()
+    const linkHome = roles === "admin"
     ? "/tabs/signup"
-    : role === "Operations"
+    : roles === "operations"
     ? "/tabs/BankAccountApproval"
-    : role === "Customer Service"
-    ? '/'
+    : roles === "customer service"
+    ? "/tabs/dummyPage"
     : "/tabs/login";
 
     return linkHome
@@ -44,35 +47,37 @@ export const obj = {
     const auth = useContext(AuthContext);
     let option= {
       options1: [],
-      options2 : ['Login', 'Support', 'Dark Mode'],
-      options3: ['Show Tutorial']
+      options2 : ['Login', 'Dark Mode']
       }
 
     const allTabs = () => {
       option.options2.shift(0)
+      option.options2.unshift('Manage Account')
       option.options2.push('Logout')
     }
 
     const adminTabs = () => {
-      option.options1.splice(0, 0, 'Create User')
+      option.options1= ['Create User']
     }
 
     const operationsTabs = () => {
-      option.options1.splice(0, 0, 'Bank Account Approval')
+      option.options1= ['Bank Account Approval']
     }
 
     const csTabs = () => {
-      option.options1.splice(0, 0, 'Future Tab')
+      option.options1= ['Dummy Page']
     }
 
-    if (auth.userRole === 'admin'){
+    const role = auth.userRole?.toLowerCase()
+    if (role === 'admin'){
       allTabs();
       adminTabs();
-    } else if (auth.userRole === 'Operations'){
+    } else if (role === 'operations'){
       allTabs();
       operationsTabs();
     } 
-    else if (auth.userRole === 'Customer Service'){
+    else if (role === 'customer service'){
+      allTabs();
       csTabs();
     }
   
