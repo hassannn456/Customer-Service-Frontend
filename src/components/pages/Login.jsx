@@ -1,20 +1,25 @@
-import { Button, Stack, useTheme } from "@mui/material";
-import { StyledInput, StyledInputLabel } from "../helpers/inputs";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, IconButton, InputAdornment, Stack, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
 import IonicSvg from "../helpers/IonicSvg";
+import { StyledInput, StyledInputLabel } from "../helpers/inputs";
 import { useLoginMutation } from "../../generated/graphql.tsx";
 import { onSubmitHandler } from "../helpers/submitHandlers";
 import errorHandler from "../helpers/errorHandler";
 import { AuthContext } from "../auth-context/auth-context";
 import { navHome } from "../navigation/optionsData";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Login = () => {
   const theme = useTheme();
-  const [submitLogin, { loading, error }] = useLoginMutation();
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const auth = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+
+  const [submitLogin, { loading, error }] = useLoginMutation();
 
   const [form, setForm] = useState({
     username: "",
@@ -56,8 +61,18 @@ const Login = () => {
             <StyledInput
               element="input"
               id="password"
-              type="password"
               onChange={onChangeHandler("password")}
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
           </Stack>
         </Stack>
@@ -68,19 +83,10 @@ const Login = () => {
           <Button
             disabled={loading}
             type="submit"
-            sx={{ width: "47%", background: "#428cff", color: "white" }}
+            sx={{ width: "98%", background: "#428cff", color: "white" }}
             variant="contained"
           >
             {loading ? "..." : "LOGIN"}
-          </Button>
-          <Button
-            sx={{ width: "47%" }}
-            variant="contained"
-            color="secondary"
-            LinkComponent={Link}
-            to={"/tabs/signup"}
-          >
-            SIGN UP
           </Button>
         </Stack>
       </form>
