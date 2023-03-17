@@ -1,12 +1,15 @@
-import { Button, Stack, useTheme } from "@mui/material";
+import { Button, IconButton, InputAdornment, Stack, useTheme } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+import { useState } from "react";
+
+import IonicSvg from "../helpers/IonicSvg";
 import {
   StyledInput,
   StyledInputLabel,
   StyledMenuItem,
   StyledSelect,
 } from "../helpers/inputs";
-import { useState } from "react";
-import IonicSvg from "../helpers/IonicSvg";
 import { useSignUpMutation } from "../../generated/graphql.tsx";
 import { onSubmitHandler } from "../helpers/submitHandlers";
 import errorHandler from "../helpers/errorHandler";
@@ -15,6 +18,8 @@ const SignUp = () => {
   const theme = useTheme();
   const [role, setRole] = useState("");
   const [created, setCreated] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   const [submitSignUp, { loading, error }] = useSignUpMutation();
 
@@ -71,8 +76,18 @@ const SignUp = () => {
             <StyledInput
               element="input"
               id="password"
-              type="password"
               onChange={onChangeHandler("password")}
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
           </Stack>
 
@@ -107,7 +122,7 @@ const SignUp = () => {
 
         {error && errorHandler(error)}
 
-        {created ? <Stack m={2}> <small>{created}</small> </Stack> : null}
+        {!error && created ? <Stack m={2}> <small>{created}</small> </Stack> : null}
 
         <Stack mt={2} width="100%" alignItems="center">
           <Button
