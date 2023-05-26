@@ -5,7 +5,7 @@ import App from "./App";
 import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
 
-export const EXPRESS_URL = process.env.REACT_APP_BACKEND;
+export const EXPRESS_URL = "http://localhost:5000/customer";
 export const GRAPHQL_URL = `${EXPRESS_URL}/graphql`;
 
 const httpLink = createHttpLink({

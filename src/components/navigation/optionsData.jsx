@@ -57,7 +57,7 @@ export const obj = {
     }
 
     const adminTabs = () => {
-      option.options1= ['Create User']
+      option.options1= ['Create User', 'Users Data']
     }
 
     const operationsTabs = () => {
