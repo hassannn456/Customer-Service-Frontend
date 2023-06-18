@@ -51,7 +51,7 @@ const ManageAccounts = () => {
           sx={{ backgroundColor: theme.palette.secondary.main }}
         >
           <Stack mt={1}>
-            <StyledInputLabel htmlFor="password">Password:</StyledInputLabel>
+            <StyledInputLabel htmlFor="password">Current Password:</StyledInputLabel>
             <StyledInput
               element="input"
               id="password"
