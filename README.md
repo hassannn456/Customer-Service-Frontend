@@ -14,5 +14,5 @@ docker compose up
 
 <!-- REGENERATE graphql.ts -->
 npm run gen
-Use this command if any changes were made to the files in graphql folder
+Use this command if any changes were made to the files in graphql folder.
 

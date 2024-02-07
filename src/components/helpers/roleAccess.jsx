@@ -10,8 +10,8 @@ const Auth = ({ allowedRoles }) => {
   return allowedRoles.find((role) => auth.userRole?.toLowerCase().includes(role)) ? (
     <Outlet />
   ) : (
-    <Navigate to={'/'} state={{ from: location }} replace/>
-  );
+    <Navigate to={location.pathname} state={{ from: location }} replace/>
+  ) 
 };
 
 export default Auth;

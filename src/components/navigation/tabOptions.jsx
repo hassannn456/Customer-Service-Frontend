@@ -6,6 +6,7 @@ import {
     Logout,
     ManageAccounts,
     FormatListBulleted,
+    PersonSearch,
   } from "@mui/icons-material";
 import { useContext } from "react";
 import { AuthContext } from "../auth-context/auth-context";
@@ -18,16 +19,17 @@ export const obj = {
     'Bank Account Approval': <Flaky/>,
     'Manage Account': <ManageAccounts/>,
     'Users Data': <FormatListBulleted/>,
-    'Dummy Page': <FormatListBulleted/>
+    'Customer Search': <PersonSearch/>
   };
 
   export const links = {
     Login: '/tabs/login',
+    Logout: '/tabs/login',
     "Create User": '/tabs/signup',
     'Bank Account Approval': '/tabs/BankAccountApproval',
     'Manage Account': '/tabs/manageAccount',
     'Users Data': '/tabs/usersData',
-    'Dummy Page': '/tabs/dummyPage'
+    'Customer Search': '/tabs/customerSearch'
   };    
 
   export const navHome = (role) =>{ 
@@ -37,7 +39,7 @@ export const obj = {
     : roles === "operations"
     ? "/tabs/BankAccountApproval"
     : roles === "customer service"
-    ? "/tabs/dummyPage"
+    ? "/tabs/customerSearch"
     : "/tabs/login";
 
     return linkHome
@@ -65,7 +67,7 @@ export const obj = {
     }
 
     const csTabs = () => {
-      option.options1= ['Dummy Page']
+      option.options1= ['Customer Search']
     }
 
     const role = auth.userRole?.toLowerCase()

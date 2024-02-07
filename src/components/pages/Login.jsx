@@ -2,13 +2,13 @@ import { Button, IconButton, InputAdornment, Stack, useTheme } from "@mui/materi
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
-import IonicSvg from "../helpers/IonicSvg";
+import Logo  from "../helpers/Logo";
 import { StyledInput, StyledInputLabel } from "../helpers/inputs";
 import { useLoginMutation } from "../../generated/graphql.tsx";
 import { onSubmitHandler } from "../helpers/submitHandlers";
 import errorHandler from "../helpers/errorHandler";
 import { AuthContext } from "../auth-context/auth-context";
-import { navHome } from "../navigation/optionsData";
+import { navHome } from "../navigation/tabOptions";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Login = () => {
@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <>
-      <IonicSvg />
+      <Logo  />
       <form onSubmit={(e) => submitHandler(e, submitLogin, form)}>
         <Stack
           pt={2}
@@ -83,7 +83,7 @@ const Login = () => {
           <Button
             disabled={loading}
             type="submit"
-            sx={{ width: "98%", background: "#428cff", color: "white" }}
+            sx={{ width: "98%", background: "#428BCA", color: "white" }}
             variant="contained"
           >
             {loading ? "..." : "LOGIN"}

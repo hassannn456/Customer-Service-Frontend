@@ -1,5 +1,5 @@
-mutation rejectBankBook($id: Int!) {
-  rejectBankBook(id: $id) {
+mutation rejectBankBook($id: Int!, $remark: String) {
+  rejectBankBook(id: $id, remark: $remark) {
     response
   }
 }

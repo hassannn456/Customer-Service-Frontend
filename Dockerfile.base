@@ -1,0 +1,18 @@
+FROM node:16.17.1-alpine
+
+# Install and configure `serve`.
+RUN npm install -g serve
+CMD ln -s /usr/src/app/build /usr/src/app/build/customer-console; serve -s build
+EXPOSE 3000
+RUN npm install react-scripts@latest -g
+ENV TZ Asia/Bangkok
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY package.json /usr/src/app/
+RUN npm install
+
+RUN npm install -g env-cmd
+
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH

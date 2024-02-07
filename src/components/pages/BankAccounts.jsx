@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardMedia,
-  Stack,
-  Tooltip,
-  Typography,
-  Box,
-  styled,
-} from "@mui/material";
+import { Card, Stack, Tooltip, Box, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import { useGetNewBankBooksQuery } from "../../generated/graphql.tsx";
@@ -18,26 +10,21 @@ const StyledSearchResultBox = styled(Box)({
 });
 
 const BankAccounts = () => {
-  const { data, loading, error, refetch } = useGetNewBankBooksQuery({
-    variables: {},
-  });
+  const { data, loading, error, refetch } = useGetNewBankBooksQuery();
+
   refetch();
 
   const accounts = data?.getNewBankBooks;
 
   if (accounts?.length > 0) {
-    const filteredAccounts = accounts.filter((acc) => acc.active === false && acc.account_number !== null);
+    const filteredAccounts = accounts.filter(
+      (acc) => acc.active === false && acc.account_number !== null
+    );
     return (
       <StyledSearchResultBox mb={8}>
         {filteredAccounts.length ? (
           filteredAccounts.map((acc) => (
-            <ResultsAccounts
-              key={acc.id}
-              id={acc.id}
-              name={acc.display_name}
-              account={acc.account_number}
-              image={acc.book_image}
-            />
+            <ResultsAccounts key={acc.id} users={acc} />
           ))
         ) : (
           <Stack mt={2}>No results found.</Stack>
@@ -57,12 +44,13 @@ const BankAccounts = () => {
 
 export default BankAccounts;
 
-const ResultsAccounts = (props) => {
+const ResultsAccounts = ({ users }) => {
   return (
     <Tooltip title="Click for details">
       <Stack
-        mx={1.2}
-        mb={2}
+        mx={1}
+        mb={1}
+        width="100%"
         sx={{
           "&:hover": {
             transform: "scale(1.02)",
@@ -71,22 +59,25 @@ const ResultsAccounts = (props) => {
       >
         <Link
           style={{ textDecoration: "none" }}
-          to={`/tabs/BankAccountApproval/${props.id}`}
+          to={`/tabs/BankAccountApproval/${users.id}`}
         >
-          <Card sx={{ minWidth: 320 }}>
-            <CardMedia
-              component="img"
-              alt=""
-              height="140"
-              image={props.image}
-            />
-            <Stack px={1.6} py={1}>
-              <Typography fontSize={14} fontWeight={"bold"}>
-                Name: {props.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Account No: {props.account}
-              </Typography>
+          <Card>
+            <Stack py={1.4} direction="row" justifyContent="center" spacing={1}>
+              <Box pl={2} sx={{ minWidth: "44%" }}>
+                <small>
+                  <b>Customer ID:</b>&nbsp;{users.customer_id}
+                </small>
+              </Box>
+              <Box sx={{ minWidth: "28%" }}>
+                <small>
+                  <b>Name:</b>&nbsp;{users.display_name}
+                </small>
+              </Box>
+              <Box sx={{ minWidth: "22%" }}>
+                <small>
+                  <b>Account No:</b>&nbsp;{users.account_number}
+                </small>
+              </Box>
             </Stack>
           </Card>
         </Link>

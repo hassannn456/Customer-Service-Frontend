@@ -1,0 +1,34 @@
+query GetCustomers {
+  getCustomers {
+    customer_id
+    company_id
+    user_id
+    device_id
+    fname_th
+    mname_th
+    lname_th
+    fullname_th
+    fname_en
+    mname_en
+    lname_en
+    fullname_en
+    national_id
+    passport
+    laser_code
+    dob
+    issue_date
+    expire_date
+    image_card
+    image_face
+    dopa
+    pin
+    risk_factor
+    risk_reason
+    created_at
+    updated_at
+    wallet
+    is_approved
+    pin_attempts
+    nationality
+  }
+}

@@ -1,17 +1,17 @@
-version: "3.10"
+version: "3"
 
 services:
-  app:
-    build: .
-    command: npm start
-    working_dir: /CustomerConsole
-    volumes:
-      - .:/CustomerConsole
-    ports:
-      - 3000:3000
+  customer-console:
+    build:
+      context: .
+    container_name: customer-console
+    image: customer-console
+    restart: always
     environment:
-      - PATH=/app/node_modules/.bin:$PATH
-    depends_on:
-      - node
-  node:
-    image: node:16.17.1-alpine
+      REACT_APP_LOGO: img/appicon.png
+      REACT_APP_COMPANYNM: Holding (Thailand) Co., Ltd.
+      PORT: 3000
+    ports:
+      - 8004:3000
+    # volumes:
+    #   - /home/deploy/customer-console/.env:/usr/src/app/.env

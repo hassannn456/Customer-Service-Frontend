@@ -1,0 +1,9 @@
+query GetNationalities {
+  getNationalities {
+    country
+    country_code
+    created_at
+    id
+    un_code
+  }
+}

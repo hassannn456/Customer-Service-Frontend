@@ -3,7 +3,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { useState } from "react";
 
-import IonicSvg from "../helpers/IonicSvg";
+import Logo from "../helpers/Logo";
 import {
   StyledInput,
   StyledInputLabel,
@@ -31,6 +31,7 @@ const SignUp = () => {
   });
 
   const submitHandler = async (e, submitSignUp, form) => {
+    setCreated('')
     const result = await onSubmitHandler(e, submitSignUp, form);
     result.signUp?.username && setCreated("- User Created Successfully!")
   };
@@ -42,7 +43,7 @@ const SignUp = () => {
 
   return (
     <>
-      <IonicSvg />
+      <Logo />
 
       <form onSubmit={(e) => submitHandler(e, submitSignUp, form)}>
         <Stack
@@ -126,7 +127,7 @@ const SignUp = () => {
 
         <Stack mt={2} width="100%" alignItems="center">
           <Button
-            sx={{ width: "98%", background: "#428cff", color: "white" }}
+            sx={{ width: "98%", background: "#428BCA", color: "white" }}
             variant="contained"
             disabled={loading}
             type="submit"

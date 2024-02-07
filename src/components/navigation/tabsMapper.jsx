@@ -9,14 +9,13 @@ import {
   Typography,
 } from "@mui/material";
 import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../auth-context/auth-context";
 
-import { links, obj } from "./optionsData";
+import { links, obj } from "./tabOptions";
 
 const Options = (props) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const auth = useContext(AuthContext);
   let key = Object.keys(links).find(k=>links[k]===location.pathname);
   const [value, setValue] = useState(key);
@@ -55,9 +54,8 @@ const Options = (props) => {
               to={links[text]} 
               onClick={() => {
                 dashHandler(text !== 'Dark Mode' | 'Logout' ? text : value)
-                if(text === 'Logout') {
+                if (text === 'Logout') {
                   auth.logout()
-                  navigate('/tabs/login')
                 }
               }}
             >

@@ -5,9 +5,9 @@ import SignUp from "../pages/SignUp";
 import Auth from "../helpers/roleAccess";
 import BankAccounts from "../pages/BankAccounts";
 import AccountDetails from "../pages/AccountDetails";
-import TabNames, { links } from "../navigation/optionsData";
+import TabNames, { links } from "../navigation/tabOptions";
 import ManageAccounts from "../pages/ManageAccounts";
-import DummyPage from "../pages/DummyPage";
+import CustomerSearch from "../pages/CustomerSearch";
 import UsersData from "../pages/UsersData";
 
  const useRoutes = () => {
@@ -36,7 +36,7 @@ import UsersData from "../pages/UsersData";
       </Route>
 
       <Route element={<Auth allowedRoles={["customer service"]} />}>
-      <Route path="/tabs/dummyPage" element={<DummyPage />} />
+      <Route path="/tabs/customerSearch" element={<CustomerSearch />} />
       </Route>
     </Routes>
     )

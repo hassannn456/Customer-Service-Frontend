@@ -1,0 +1,17 @@
+mutation customerAddress($id: String) {
+  customerAddress(id: $id) {
+    id
+    customer_id
+    address_type
+    province
+    district
+    sub_district
+    postcode
+    address_line1
+    address_line2
+    created_at
+    updated_at
+    is_approved
+    country_code
+  }
+}

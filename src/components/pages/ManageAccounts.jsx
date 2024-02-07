@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-import IonicSvg from "../helpers/IonicSvg";
+import Logo from "../helpers/Logo";
 import { StyledInput, StyledInputLabel } from "../helpers/inputs";
 import { onSubmitHandler } from "../helpers/submitHandlers";
 import errorHandler from "../helpers/errorHandler";
@@ -43,7 +43,7 @@ const ManageAccounts = () => {
 
   return (
     <>
-      <IonicSvg />
+      <Logo />
       <form onSubmit={(e) => submitHandler(e, updatePasswordMutation, form)}>
         <Stack
           pt={2}
@@ -107,8 +107,7 @@ const ManageAccounts = () => {
           <Button
             disabled={loading}
             type="submit"
-            sx={{ width: "96%", background: "#428cff", color: "white" }}
-            variant="contained"
+            sx={{ width: "96%", background: "#428BCA", color: "white" }}
           >
             {loading ? "..." : "Update Password"}
           </Button>

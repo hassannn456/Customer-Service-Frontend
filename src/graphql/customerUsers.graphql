@@ -1,0 +1,25 @@
+mutation customerUsers($id: String) {
+  customerUsers(id: $id) {
+    id
+    uuid
+    phone
+    otp_secret
+    last_otp_at
+    created_at
+    updated_at
+    email
+    company_id
+    role
+    state
+    deleted_at
+    username
+    shopname
+    locked_at
+    login_attempts
+    locale
+    lang
+    alias
+    sso_expiry
+    full_name
+  }
+}

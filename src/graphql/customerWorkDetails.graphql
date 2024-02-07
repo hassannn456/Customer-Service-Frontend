@@ -1,0 +1,20 @@
+mutation customerWorkDetails($id: String) {
+  customerWorkDetails(id: $id) {
+    work_information_id
+    customer_id
+    company_name
+    business_type_id
+    business_type
+    occupation_id
+    occupation
+    employment_type
+    current_work_period
+    total_salary_per_month_thb
+    payroll_type
+    payroll_date
+    payroll_date_2
+    created_at
+    updated_at
+    address_id
+  }
+}

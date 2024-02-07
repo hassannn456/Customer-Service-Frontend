@@ -11,9 +11,9 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
 
 import BottomNav from "./navigation/BottomNav";
-import Options from "./navigation/options";
-import { links } from "./navigation/optionsData";
-import TabNames from "./navigation/optionsData";
+import Options from "./navigation/tabsMapper";
+import { links } from "./navigation/tabOptions";
+import TabNames from "./navigation/tabOptions";
 
 import useRoutes from "./hooks/routes";
 import { useLocation, useNavigate } from "react-router-dom";

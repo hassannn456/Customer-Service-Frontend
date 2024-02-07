@@ -1,8 +1,8 @@
 import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
 import React, { useState } from "react";
 
-import { links, obj } from "./optionsData";
-import TabNames from "./optionsData";
+import { links, obj } from "./tabOptions";
+import TabNames from "./tabOptions";
 
 import { drawerWidth } from "../console";
 import { Link, useLocation } from "react-router-dom";
